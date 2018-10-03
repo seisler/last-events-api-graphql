@@ -1,12 +1,15 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { EventsModule } from './events/events.module';
-import { DatabaseModule } from './database/database.module';
+import { ConfigModule } from './config/config.module';
 import { join } from 'path';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { databaseConfig } from '../common/config/database';
 
 @Module({
   imports: [
-    DatabaseModule,
+    ConfigModule,
+    TypeOrmModule.forRoot(databaseConfig[process.env.NODE_ENV]),
     EventsModule,
     GraphQLModule.forRoot({
       include: [],
@@ -22,4 +25,4 @@ import { join } from 'path';
   providers: [],
 })
 
-export class AppModule {}
+export class AppModule { }

@@ -12,7 +12,7 @@ import {
 } from 'sequelize-typescript';
 
 import { IDefineOptions } from 'sequelize-typescript/lib/interfaces/IDefineOptions';
-import {MessageCodeError} from '../common/lib/error/MessageCodeError';
+import { MessageCodeError } from '../../common/lib/error/MessageCodeError';
 
 const tableOptions: IDefineOptions = { timestamp: true, tableName: 'events' } as IDefineOptions;
 

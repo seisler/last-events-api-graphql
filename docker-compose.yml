@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  api:
+    build: ./etc/docker/development
+    command: npm run start:dev
+    container_name: api.test
+    depends_on:
+      - mysql
+    ports:
+      - "8081:80"
+    volumes:
+      - .:/app
+    working_dir: /app
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=root
+      - MYSQL_DATABASE=last-events
+    volumes:
+      - dbdata:/var/lib/mysql
+    #tmpfs:
+    #  - /var/lib/mysql:rw
+    #ports:
+    #  - "3307:3306"
+
+volumes:
+  dbdata:
