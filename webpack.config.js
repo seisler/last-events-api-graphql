@@ -1,14 +1,15 @@
 const webpack = require('webpack');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const NodemonWebpackPlugin = require('nodemon-webpack-plugin');
 
 module.exports = {
-  entry: ['webpack/hot/poll?1000', './src/server.hmr.ts'],
+  entry: ['./src/server.ts'],
   watch: true,
   target: 'node',
   externals: [
     nodeExternals({
-      whitelist: ['webpack/hot/poll?1000'],
+      whitelist: [],
     }),
   ],
   module: {
@@ -25,7 +26,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new NodemonWebpackPlugin(),
   ],
   output: {
     path: path.join(__dirname, 'dist'),
