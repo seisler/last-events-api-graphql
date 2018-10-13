@@ -1,6 +1,7 @@
 {
   "watch": ["src"],
   "ext": "ts",
-  "ignore": ["src/**/*.spec.ts"],
+  "delay": "2500",
+  "ignore": ["src/**/*.spec.ts", "src/modules/graphql/graphql.schema.ts"],
   "exec": "ts-node -r tsconfig-paths/register src/server.ts"
 }

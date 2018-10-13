@@ -6,8 +6,9 @@ export interface IDatabaseConfigAttributes {
     database: string;
     host: string;
     port: number;
-    entities: string[];
+    entities: any[];
     type: string;
+    synchronize: boolean;
 }
 
 export interface IDatabaseConfig {

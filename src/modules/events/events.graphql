@@ -4,7 +4,7 @@ type Query {
 }
 
 type Mutation {
-    createEvent(createEventInput: CreateEventInput): Event
+    createEvent(input: EventInput): Event
 }
 
 type Subscription {
@@ -12,14 +12,24 @@ type Subscription {
 }
 
 type Event {
-    id: Int
-    name: String
-    description: String
+    id: Int!
+    name: String!
+    description: String!
+    location: String!
+    price: String!
 }
 
-input CreateEventInput {
+type Location {
+    hall: String
+    street: String
+    city: String
+    postcode: String
+}
+
+input EventInput {
     name: String
     description: String
-
+    location: String
+    price: String
 }
 

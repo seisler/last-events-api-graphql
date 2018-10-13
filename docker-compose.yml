@@ -3,7 +3,7 @@ version: '3'
 services:
   api:
     build: ./etc/docker/development
-    command: npm run start:dev
+    command: ./etc/docker/development/api-command.sh
     container_name: api.test
     depends_on:
       - mysql

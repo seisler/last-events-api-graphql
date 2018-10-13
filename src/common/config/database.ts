@@ -1,6 +1,7 @@
 'use strict';
 
 import { IDatabaseConfig } from './interfaces/IDatabase';
+import { Event } from '../../modules/events/event.entity';
 
 export const databaseConfig: IDatabaseConfig = {
     development: {
@@ -9,7 +10,8 @@ export const databaseConfig: IDatabaseConfig = {
         database: process.env.DB_NAME,
         host: process.env.DB_HOST,
         port: Number(process.env.DB_PORT),
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        synchronize: true,
+        entities: [Event],
         type: 'mysql',
     },
 };

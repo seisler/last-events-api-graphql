@@ -1,66 +1,33 @@
 'use strict';
 
 import {
-    Table,
-    Column,
-    Model,
-    DataType,
-    CreatedAt,
-    UpdatedAt,
-    DeletedAt,
-    BeforeValidate,
-} from 'sequelize-typescript';
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
-import { IDefineOptions } from 'sequelize-typescript/lib/interfaces/IDefineOptions';
-import { MessageCodeError } from '../../common/lib/error/MessageCodeError';
+@Entity()
+export class Event {
+  @PrimaryGeneratedColumn()
+  public id: number;
 
-const tableOptions: IDefineOptions = { timestamp: true, tableName: 'events' } as IDefineOptions;
+  @Column({length: 200})
+  public name: string;
 
-@Table(tableOptions)
-export class Event extends Model<Event> {
-    @Column({
-        type: DataType.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        unique: true,
-        primaryKey: true,
-    })
-    public id: number;
+  @Column('text')
+  public description: string;
 
-    @Column({
-        type: DataType.CHAR(50),
-        allowNull: false,
-    })
-    public name: string;
+  @Column()
+  public location: string;
 
-    @Column({
-        type: DataType.TEXT,
-        allowNull: false,
-    })
-    public description: string;
+  @Column()
+  public price: string;
 
-    @Column
-    public startDate: Date;
+  @CreateDateColumn()
+  public createdAt: Date;
 
-    @Column
-    public endDate: Date;
-
-    @CreatedAt
-    public createdAt: Date;
-
-    @UpdatedAt
-    public updatedAt: Date;
-
-    @DeletedAt
-    public deletedAt: Date;
-
-    @BeforeValidate
-    public static validateData(event: Event, options: any) {
-        if (!options.transaction) throw new Error('Missing transaction.');
-        if (!event.name) throw new MessageCodeError('event:create:missingName');
-        if (!event.description) throw new MessageCodeError('event:create:missingDescription');
-        if (!event.startDate) throw new MessageCodeError('event:create:missingStartDate');
-        if (!event.endDate) throw new MessageCodeError('event:create:missingEndDate');
-        if (event.endDate >= event.startDate) throw new MessageCodeError('event:create:startEndInconsistency');
-    }
+  @UpdateDateColumn()
+  public updatedAt: Date;
 }

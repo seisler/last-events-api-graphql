@@ -26,7 +26,11 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
-    new NodemonWebpackPlugin(),
+    new NodemonWebpackPlugin({
+      watch: 'src/',
+      verbose: true,
+      delay: '2500',
+    }),
   ],
   output: {
     path: path.join(__dirname, 'dist'),

@@ -1,16 +1,27 @@
-export class CreateEventInput {
+export class EventInput {
     name?: string;
     description?: string;
+    location?: string;
+    price?: string;
 }
 
 export class Event {
-    id?: number;
-    name?: string;
-    description?: string;
+    id: number;
+    name: string;
+    description: string;
+    location: string;
+    price: string;
+}
+
+export class Location {
+    hall?: string;
+    street?: string;
+    city?: string;
+    postcode?: string;
 }
 
 export abstract class IMutation {
-    abstract createEvent(createEventInput?: CreateEventInput): Event | Promise<Event>;
+    abstract createEvent(input?: EventInput): Event | Promise<Event>;
 }
 
 export abstract class IQuery {
