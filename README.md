@@ -29,6 +29,13 @@ Using Docker and Docker Compose
 $ docker-compose up
 ```
 
+## Try the API
+
+App comes with GraphQL Playground
+
+```
+http://localhost:3000/graphql
+```
 
 ## Todo
 
