@@ -8,10 +8,7 @@ const pubSub = new PubSub();
 
 @Resolver('Event')
 export class EventResolver {
-  constructor(
-    private readonly eventService: EventsService,
-  ) {
-  }
+  constructor(private readonly eventService: EventsService) {}
 
   @Query('event')
   async getEvent(@Args('id') id: number) {
@@ -28,12 +25,5 @@ export class EventResolver {
     const event = await this.eventService.createAndSave(args);
     pubSub.publish('eventCreated', {eventCreated: event});
     return event;
-  }
-
-  @Subscription('eventCreated')
-  eventCreated() {
-    return {
-      subscribe: () => pubSub.asyncIterator('eventCreated'),
-    };
   }
 }

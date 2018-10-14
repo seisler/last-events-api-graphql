@@ -7,10 +7,6 @@ type Mutation {
     createEvent(input: EventInput): Event
 }
 
-type Subscription {
-    eventCreated: Event
-}
-
 type Event {
     id: Int!
     name: String!
