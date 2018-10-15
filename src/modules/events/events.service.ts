@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Event } from './event.entity';
 import { Event as EventInterface} from './interfaces/event.interface';
+import {newTimestamp} from '../../common/lib/date/Timestamp';
 
 @Injectable()
 export class EventsService {
@@ -19,9 +20,8 @@ export class EventsService {
   async createAndSave(event: EventInterface) {
     const eventCreated = await this.eventRepository.create({
       ...event,
-      createdAt: new Date(),
-      updatedAt: new Date()},
-    );
+      ...newTimestamp(),
+    });
     return await this.eventRepository.save(eventCreated);
   }
 

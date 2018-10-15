@@ -1,12 +1,14 @@
 'use strict';
 
+import {Location} from './location.entity';
+import {Timestamp} from '../../common/lib/date/Timestamp';
+
 import {
   Column,
-  CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from 'typeorm';
+import {Price} from './price.entity';
 
 @Entity()
 export class Event {
@@ -19,15 +21,12 @@ export class Event {
   @Column('text')
   public description: string;
 
-  @Column()
-  public location: string;
+  @Column(type => Location)
+  public location: Location;
 
-  @Column()
-  public price: string;
+  @Column(type => Price)
+  public price: Price;
 
-  @CreateDateColumn()
-  public createdAt: Date;
-
-  @UpdateDateColumn()
-  public updatedAt: Date;
+  @Column(type => Timestamp)
+  public timestamp: Timestamp;
 }
