@@ -1,14 +1,11 @@
 import {Column} from 'typeorm';
 
 export class Location {
-  @Column()
-  hall: string;
+  @Column({nullable: true, default: null})
+  hall?: string;
 
   @Column()
   street: string;
-
-  @Column()
-  number: number;
 
   @Column()
   city: string;

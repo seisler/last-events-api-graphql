@@ -11,21 +11,30 @@ type Event {
     id: Int!
     name: String!
     description: String!
-    location: String!
-    price: String!
+    location: Location!
+    price: Price
 }
 
 type Location {
     hall: String
-    street: String
-    city: String
-    postcode: String
+    street: String!
+    city: String!
+    postcode: String!
+}
+
+type Price {
+    amount: Float!
+    currency: String!
 }
 
 input EventInput {
     name: String
     description: String
-    location: String
-    price: String
+    locationHall: String
+    locationStreet: String
+    locationCity: String
+    locationPostcode: String
+    priceAmount: Float
+    priceCurrency: String
 }
 

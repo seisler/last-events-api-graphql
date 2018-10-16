@@ -1,5 +1,5 @@
 import {IsDefined, Length, MinLength} from 'class-validator';
-import { EventInput } from '../../graphql/graphql.schema';
+import {EventInput, Location, Price} from '../../graphql/graphql.schema';
 
 export class CreateEventDto extends EventInput {
   @IsDefined()
@@ -11,8 +11,17 @@ export class CreateEventDto extends EventInput {
   description: string;
 
   @IsDefined()
-  location: string;
+  locationStreet: string;
 
   @IsDefined()
-  price: string;
+  locationCity: string;
+
+  @IsDefined()
+  locationPostcode: string;
+
+  @IsDefined()
+  priceAmount: number;
+
+  @IsDefined()
+  priceCurrency: string;
 }
